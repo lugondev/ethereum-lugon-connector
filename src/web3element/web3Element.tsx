@@ -95,6 +95,7 @@ export function Web3Element(
         connectedElement,
         connectElement,
         invalidNetworkElement,
+        onlyInfo
     }: any) {
     const context = useWeb3React();
     const {
@@ -216,6 +217,10 @@ export function Web3Element(
 
     function ValidWeb3(comp: any) {
         return <div onClick={unlockWalletShow}>{comp}</div>
+    }
+
+    if (onlyInfo) {
+        return children({chainData, context})
     }
 
     return (
