@@ -16,8 +16,8 @@ import {Token} from "../contract/TokenContract";
 import {Web3Provider} from "@ethersproject/providers";
 import {Notify} from "./ui";
 import {ethereum, isMobile, showShortAddress} from "..";
-import MetamaskSVG from "./svg/metamask.svg";
-import WalletConnectSVG from "./svg/wallet-connect.svg";
+import MetamaskSVG from "../../svg/metamask.svg";
+import WalletConnectSVG from "../../svg/wallet-connect.svg";
 
 const connectorsByName: any = {
     Injected: injected,
