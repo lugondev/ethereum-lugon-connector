@@ -1,4 +1,4 @@
-import {getChainConfig} from "./helpers/config";
+import {getChainConfig, isMainNet, ChainId, isDevEnv} from "./helpers/config";
 
 export * from "./web3element/eth"
 export * from "./web3element/web3E"
@@ -13,6 +13,6 @@ export * from "./helpers/config"
 
 
 export {
-    getChainConfig as chainConfig
+    getChainConfig as chainConfig, isMainNet, ChainId, isDevEnv
 }
 
