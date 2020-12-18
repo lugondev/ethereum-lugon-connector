@@ -4,9 +4,7 @@ import {NoEthereumProviderError, UserRejectedRequestError as UserRejectedRequest
 import {URI_AVAILABLE, UserRejectedRequestError as UserRejectedRequestErrorWalletConnect} from "@web3-react/walletconnect-connector";
 import {UserRejectedRequestError as UserRejectedRequestErrorFrame} from "@web3-react/frame-connector";
 import {formatEther} from "@ethersproject/units";
-import {injected, walletConnect,} from "./connectors";
-import {useEagerConnect, useInactiveListener} from "./hooks";
-import {ethereum, Notify, isDevEnv, ChainId} from "..";
+import {useEagerConnect, useInactiveListener, injected, walletConnect, ethereum, Notify} from "..";
 import {wStakeContract} from "../module/WStakeContract";
 import {tokenContract} from "../module/TokenContract";
 import {Web3Provider} from "@ethersproject/providers";
@@ -52,8 +50,6 @@ function getLibrary(provider: any) {
 }
 
 export function Web3Root({children}: any) {
-    console.log("ChainID: ", ChainId());
-    console.log("isDevEnv: ", isDevEnv());
     return (
         <Web3ReactProvider getLibrary={getLibrary}>
             {children}
