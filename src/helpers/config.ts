@@ -2,6 +2,10 @@ export function ChainId(): number {
     return parseInt(process.env.REACT_APP_CHAIN || "1")
 }
 
+export function isDevEnv(): boolean {
+    return !!process.env.NODE_ENV && process.env.NODE_ENV.startsWith("dev")
+}
+
 export function isMainNet(): boolean {
     return ChainId() === 1;
 }

@@ -1,16 +1,17 @@
 import {InjectedConnector} from "@web3-react/injected-connector";
 import {WalletConnectConnector} from "@web3-react/walletconnect-connector";
+import {ChainId, isMainNet} from "..";
+import {isDevEnv} from "../helpers/config";
 
 const POLLING_INTERVAL = 12000;
 const RPC_URLS = {
-    // 1: "https://mainnet.infura.io/v3/6553d1c8e01442ffa57979c5fd752d66",
-    // 4: "https://rinkeby.infura.io/v3/6553d1c8e01442ffa57979c5fd752d66"
     1: "https://mainnet.eth.aragon.network/",
+    3: "https://ropsten.eth.aragon.network/",
     4: "https://rinkeby.eth.aragon.network/"
 };
 
 export const injected = new InjectedConnector({
-    supportedChainIds: [1, 4,]
+    supportedChainIds: isDevEnv() ? [1, 4, 3] : isMainNet() ? [1] : [ChainId()]
 });
 
 export const walletConnect = getWalletConnect();

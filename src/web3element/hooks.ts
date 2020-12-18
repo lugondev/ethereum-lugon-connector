@@ -3,12 +3,6 @@ import {useWeb3React} from "@web3-react/core";
 
 import {injected} from "./connectors";
 
-declare global {
-    interface Window {
-        ethereum: any;
-    }
-}
-
 export function useEagerConnect() {
     const {activate, active} = useWeb3React();
 
@@ -40,6 +34,7 @@ export function useInactiveListener(suppress = false) {
     const {active, error, activate} = useWeb3React();
 
     useEffect(() => {
+        // @ts-ignore
         const {ethereum} = window;
         if (ethereum && ethereum.on && !active && !error && !suppress) {
             const handleChainChanged = (chainId: number) => {
