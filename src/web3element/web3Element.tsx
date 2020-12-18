@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useEffect, useState} from "react";
 import {useWeb3React, UnsupportedChainIdError, Web3ReactProvider} from "@web3-react/core";
 import {NoEthereumProviderError, UserRejectedRequestError as UserRejectedRequestErrorInjected} from "@web3-react/injected-connector";
 import {URI_AVAILABLE, UserRejectedRequestError as UserRejectedRequestErrorWalletConnect} from "@web3-react/walletconnect-connector";
@@ -8,7 +8,6 @@ import {getWalletConnect, injected, walletConnect,} from "./connectors";
 import {useEagerConnect, useInactiveListener} from "./hooks";
 import BigNumber from "bignumber.js";
 import {Modal} from "react-bootstrap";
-import {useEffect, useState} from "react";
 import {crowdSaleContract} from "../contract/CrowdSaleContract";
 import {Web3ReactContextInterface} from "@web3-react/core/dist/types";
 import {wStakeContract} from "../contract/WStakeContract";
@@ -108,13 +107,16 @@ export function Web3Element(
         active,
         error
     } = context;
-    const [chainData, setChainData] = React.useState<IChainData>({
+    const [chainData, setChainData] = useState<IChainData>({
         blockNumber: -1,
         eth: -1,
         tokenBalance: -1,
         chainId: -1,
         address: "",
     });
+    const [activatingConnector, setActivatingConnector] = useState<any>();
+    // fetch eth balance of the connected account
+    const [ethBalance, setEthBalance] = useState(new BigNumber(0));
 
     useEffect(() => {
         updateProvider(context);
@@ -122,8 +124,7 @@ export function Web3Element(
         setChainData(Object.assign(chainData, {address: account || "", chainId}))
     }, [account, chainId, library]);
     // handle logic to recognize the connector currently being activated
-    const [activatingConnector, setActivatingConnector] = React.useState<any>();
-    React.useEffect(() => {
+    useEffect(() => {
         console.log('running');
         if (activatingConnector && activatingConnector === connector) {
             setActivatingConnector(undefined);
@@ -137,8 +138,8 @@ export function Web3Element(
     useInactiveListener(!triedEager || !!activatingConnector);
 
     // set up block listener
-    const [blockNumber, setBlockNumber] = React.useState(0);
-    React.useEffect(() => {
+    const [blockNumber, setBlockNumber] = useState(0);
+    useEffect(() => {
         console.log('running');
         if (library) {
             let stale = false;
@@ -167,9 +168,7 @@ export function Web3Element(
         }
     }, [library, chainId]);
 
-    // fetch eth balance of the connected account
-    const [ethBalance, setEthBalance] = React.useState(new BigNumber(0));
-    React.useEffect(() => {
+    useEffect(() => {
         if (library && account) {
             let stale = false;
             library
@@ -190,7 +189,7 @@ export function Web3Element(
     }, [library, account, chainId]);
 
     // log the walletconnect URI
-    React.useEffect(() => {
+    useEffect(() => {
         const logURI = (uri: any) => {
             console.log("WalletConnect URI", uri);
         };
