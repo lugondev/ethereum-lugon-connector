@@ -1,4 +1,4 @@
-import {getChainConfig, ChainId, isMainNet} from "./helpers/config";
+import {getChainConfig, ChainId, isMainNet, isDevEnv} from "./helpers/config";
 import {onSuccessCopy, Notify} from "./web3element/ui";
 
 export * from "./web3element/eth"
@@ -10,7 +10,7 @@ export * from "./helpers/chains"
 
 
 export {
-    getChainConfig as chainConfig, ChainId, isMainNet,
+    getChainConfig as chainConfig, ChainId, isMainNet, isDevEnv,
     onSuccessCopy, Notify
 }
 

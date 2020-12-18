@@ -1,0 +1,15 @@
+@web3-react/injected-connector \
+@web3-react/walletconnect-connector \
+@web3-react/frame-connector \
+web3-eth-contract  \
+web3 \
+@web3-react/core \
+bignumber.js \
+ethers \
+ethereumjs-util \
+@ethersproject/providers \
+@ethersproject/units \
+react-bootstrap \
+@fortawesome/free-brands-svg-icons \
+@fortawesome/react-fontawesome\
+recoil
