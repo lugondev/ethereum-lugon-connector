@@ -1,7 +1,6 @@
 import {InjectedConnector} from "@web3-react/injected-connector";
 import {WalletConnectConnector} from "@web3-react/walletconnect-connector";
-import {ChainId, isMainNet} from "..";
-import {isDevEnv} from "../helpers/config";
+import {ChainId, isMainNet, isDevEnv} from "..";
 
 const POLLING_INTERVAL = 12000;
 const RPC_URLS = {

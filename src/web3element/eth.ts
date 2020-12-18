@@ -1,6 +1,5 @@
 import Web3 from "web3";
-import {ChainId, valueToHex} from "..";
-import {Notify} from "./ui";
+import {ChainId, valueToHex, Notify} from "..";
 
 const Contract = require("web3-eth-contract");
 
